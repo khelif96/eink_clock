@@ -11,8 +11,8 @@ def main():
         d = Display()
 
         while(True):
-            time = getReadableTime()
-            startingPos = calulateCenteredPosition(time, displayWidth, 0)
+            t = getReadableTime()
+            startingPos = calulateCenteredPosition(t, displayWidth, 0)
             d.text((startingPos, 100), getReadableTime())
             date = getReadableDate()
             startingPos = calulateCenteredPosition(date, displayWidth, 0)
@@ -33,7 +33,7 @@ def getReadableDate():
 
 
 def calulateCenteredPosition(string, width, startingPos):
-    characterWidth = 36
+    characterWidth = 20
     strLength = len(string)
     strWidth = characterWidth * strLength
     padding = (width - strWidth) / 2
