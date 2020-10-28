@@ -3,7 +3,7 @@ from PIL import Image,ImageDraw,ImageFont
 import time
 import os
 
-# resourcedir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'resources')
+imgdir = os.path.join('resources','img')
 
 class Display:
 	epd = None
@@ -21,11 +21,14 @@ class Display:
 		except IOError as e:
 			print(e)
 	def text(self,coord, str):
-		
 		self.drawblack.text(coord, str, font = self.robotoFont)
+	def image(self, imgstr, coord = (0,0), dimensions = (100,100)):
+		Himg = Image.new('1', dimensions, 255)
+		jpg = Image.open(os.path.join(imgdir, imgstr))
+		Himg.paste(jpg, coord)
+		self.epd.display(self.epd.getbuffer(Himg))
 	def draw(self):
 		self.epd.display(self.epd.getbuffer(self.HBlackimage))
 		time.sleep(2)
 	def clear(self):
 		self.epd.Clear()
-
