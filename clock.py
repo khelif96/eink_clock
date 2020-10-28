@@ -10,6 +10,7 @@ def main():
         while(True):
             d.text((50, 100), getReadableTime())
             d.text((50, 130), getReadableDate())
+            d.draw()
             time.sleep(30)
             d.clear()
     except IOError as e:
